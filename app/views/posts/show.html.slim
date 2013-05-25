@@ -1,0 +1,15 @@
+.page-title
+  h1= @post.title
+  
+.show
+  h2 URL
+  .url= @post.url
+  h2 Content
+  .content= simple_format @post.content
+
+.form-actions
+  = link_to 'remove', post_path(@post), method: 'delete'
+  '
+  = link_to 'edit', edit_post_path(@post)
+  '
+  = link_to 'back', posts_path

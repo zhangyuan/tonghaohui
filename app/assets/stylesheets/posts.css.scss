@@ -1,0 +1,25 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass/css3/inline-block";
+
+form.simple_form {
+  &.new_post, &.edit_post {
+    label {
+      width: 100px;
+      @include inline-block;
+    }
+  
+    input.string, textarea {
+      @include inline-block;
+      width: 340px;
+    }
+  
+    .form-actions {
+      width: 440px;
+      text-align: center;
+    }
+  }
+
+}

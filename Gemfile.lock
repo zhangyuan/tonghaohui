@@ -36,10 +36,6 @@ GEM
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
-    bootstrap-sass (2.2.2.0)
-      sass (~> 3.2)
-    bootstrap-will_paginate (0.0.9)
-      will_paginate
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.0.4)
@@ -198,8 +194,6 @@ PLATFORMS
 DEPENDENCIES
   acts_as_fu
   better_errors
-  bootstrap-sass (~> 2.2.2.0)
-  bootstrap-will_paginate
   capistrano
   coffee-rails (~> 3.2.1)
   compass-rails

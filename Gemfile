@@ -10,7 +10,6 @@ gem 'rails_config'
 gem 'slim-rails'
 gem 'simple_form', '>= 2.0.1'
 gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'oj'
 
 # Gems used only for assets and not required
@@ -19,7 +18,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
-  gem 'bootstrap-sass', '~> 2.2.2.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

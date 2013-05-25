@@ -1,0 +1,5 @@
+= link_to 'new', new_post_path
+
+- @posts.each do |post|
+  .post.entry
+    = link_to post.title, post_path(post.id)
