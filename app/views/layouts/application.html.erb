@@ -7,7 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <div>
+    <ul>
+      <% flash.each do |name, value| -%>
+      <li><%= value%> </li>
+      <% end -%>
+    </ul>
+  </div>
+  <div>
+    username: <b><%= current_user.try(:username) %></b>
+    <% if current_user %>
+      <%= link_to 'sign_out', sign_out_url %>
+    <% else %>
+      <%= link_to 'sign_in', sign_in_url %>
+    <% end %>
+  </div>
 <%= yield %>
 
 </body>

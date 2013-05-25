@@ -33,6 +33,7 @@ GEM
       sqlite3
     addressable (2.3.2)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
@@ -205,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_fu
+  bcrypt-ruby (~> 3.0.0)
   better_errors
   capistrano
   coffee-rails (~> 3.2.1)

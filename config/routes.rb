@@ -1,12 +1,20 @@
 S1::Application.routes.draw do
   resources :posts
-  get '/' => 'posts#index'
+  get '/' => 'posts#index', as: 'root'
   
   scope constraints: { provider: /weibo|douban/ } do
-    get 'auth/:provider/connect' => 'connects#new', as: 'connect'
+    get 'auth/:provider/connect' => 'connects#auth', as: 'auth'
     get 'auth/:provider/callback' => 'connects#callback', as: 'callback'
     get 'auth/:provider/cancel' => 'connects#cancel', as: 'cancel'
   end
+  
+  resources :users, only: [:create]
+  
+  get 'register' => 'users#new', as: 'register'
+  get 'sign_in' => 'sessions#new', as: 'sign_in'
+  get 'sign_out' => 'sessions#destroy', as: 'sign_out'
+  
+  resources :sessions, only: [:create]
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

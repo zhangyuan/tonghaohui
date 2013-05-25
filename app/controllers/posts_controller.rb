@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  require_sign_in only: [:new, :create]
+  
   def new
     @post = Post.new
   end

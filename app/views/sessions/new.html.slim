@@ -1,0 +1,14 @@
+.page-header
+  h1 第三方登录
+  
+ul
+  li= link_to '微博', auth_url('weibo')
+  
+= simple_form_for :user, url: sessions_path do |f|
+  = f.input :username do
+    = text_field_tag :username, params[:username]
+  = f.input :password do
+    = text_field_tag :password
+  
+  .form-actions
+    = f.submit
