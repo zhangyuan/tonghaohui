@@ -11,6 +11,7 @@ gem 'slim-rails'
 gem 'simple_form', '>= 2.0.1'
 gem 'will_paginate'
 gem 'oj'
+gem 'oauth2'
 
 # Gems used only for assets and not required
 # in production environments by default.

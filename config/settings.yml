@@ -1,0 +1,6 @@
+auth:
+  weibo:
+    app_key: ''
+    app_secret: ''
+    redirect_uri: ''
+    scope: ''
