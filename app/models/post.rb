@@ -36,9 +36,13 @@ class Post < ActiveRecord::Base
   
   def tag_list= (list)
     @tag_list = list.is_a?(String) ? list.split : list
-    self.taggings = @tag_list.first(5).map do |tag_name|
-      self.taggings.build(title: tag_name.to_s.gsub('.', '_'))
+
+    new_taggings = self.taggings.select {|tagging| @tag_list.include?(tagging.title)}
+    
+    (@tag_list - new_taggings.map(&:title)).each do |tag_name|
+      new_taggings.push self.taggings.build(title: tag_name.to_s.gsub('.', '_'))
     end
+    self.taggings = new_taggings
   end
   
   def tag_list
