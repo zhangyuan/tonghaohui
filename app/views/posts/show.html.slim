@@ -12,9 +12,9 @@
     .url 
       ' 链接
       '
-      = link_to @post.url, @post.url, target: '_blank'
+      = link_to @post.url, @post.url, target: '_blank', rel: "nofollow"
 
-  .content= simple_format @post.content
+  .content= auto_link simple_format(@post.content), link: :urls, html: { target: '_blank', rel: "nofollow" }
 
 .posts.show.form-actions
   = link_to t('helpers.remove'), post_path(@post), method: 'delete', class: 'btn' if @post.removed_by?(current_user)
