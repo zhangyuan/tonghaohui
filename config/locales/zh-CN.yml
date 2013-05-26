@@ -26,6 +26,7 @@ zh-CN:
         title: 标题
         url: URL
         content: 内容
+        tag_list: 标签
   will_paginate:
     previous_label: "&#8592; 上一页"
     next_label: "下一页 &#8594;"

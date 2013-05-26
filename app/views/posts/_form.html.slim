@@ -1,7 +1,8 @@
 = simple_form_for @post do |f|
-  = f.input :title
+  = f.input :title, required: false
   = f.input :url
   = f.input :content
+  = f.input :tag_list, hint: '多个标签用空格分开，最多5个'
   .form-actions
     - if @post.new_record?
       = f.submit '提交'

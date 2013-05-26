@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Post < ActiveRecord::Base
-  attr_accessible :content, :title, :url
+  attr_accessible :content, :title, :url, :tag_list
   
   validates :title, presence: true
   
@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   validate :url_should_be_valid
   
   belongs_to :user
+  has_many :taggings, foreign_key: 'taggable_id'
   
   include Publishable
   
@@ -31,5 +32,16 @@ class Post < ActiveRecord::Base
   
   def removed_by?(user)
     user && user_id == user.id
+  end
+  
+  def tag_list= (list)
+    @tag_list = list.is_a?(String) ? list.split : list
+    self.taggings = @tag_list.first(5).map do |tag_name|
+      self.taggings.build(title: tag_name)
+    end
+  end
+  
+  def tag_list
+    self.taggings.map(&:title).join(' ')
   end
 end

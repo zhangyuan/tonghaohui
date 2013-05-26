@@ -21,6 +21,8 @@ S1::Application.routes.draw do
     end
   end
   
+  get 'tag/:title' => 'taggings#show', as: 'tag'
+  
   resources :sessions, only: [:create]
   
   # The priority is based upon order of creation:

@@ -1,0 +1,10 @@
+.page-header
+  h1
+    ' 标签：
+    = params[:title]
+  
+.posts.list
+  - @taggings.each do |tagging|
+    = render 'posts/entry', post: tagging.post
+    
+  = will_paginate @taggings

@@ -34,8 +34,18 @@ form.simple_form {
     background-color: lighten(#90CA77, 30%);
     @include border-radius(5px);
     span.host {
-      font-size: 10px;
+      font-size: 11px;
       color: #333;
+    }
+    
+    span.tag_list {
+      font-size: 11px;
+      span.tagging a {
+        @include inline-block;
+        padding: 1px 3px;
+        background-color: #D4E7ED;
+        @include border-radius(5px);
+      }
     }
     
     a {

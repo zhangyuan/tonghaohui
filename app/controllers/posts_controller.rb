@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     return unless can_edit_post?(@post)
     
-    if @post.update_attributes(params[:post].slice(:title, :url, :content))
+    if @post.update_attributes(post_params)
       redirect_to post_path(@post)
     else
       render :edit
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.new(params[:post].slice(:title, :url, :content))
+    @post = current_user.posts.new(post_params)
     @post.published_as = :published
     if @post.save
       redirect_to posts_url
@@ -49,6 +49,10 @@ class PostsController < ApplicationController
   end
   
   protected
+  
+  def post_params
+    params[:post].slice(:title, :url, :content, :tag_list)
+  end
   
   def can_edit_post?(post)
     unless post.edited_by?(current_user)

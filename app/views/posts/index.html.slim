@@ -1,21 +1,7 @@
 .posts.list
   - @posts.each do |post|
-    .post.entry
-      .title
-        - if post.url.present?
-          = link_to post.title, post.url, target: '_blank'
-          '
-          span.host= "[#{fetch_url_host(post.url)}]"
-        - else
-          = link_to post.title, post_path(post.id)
-      .info
-        span.created_at
-          = link_to post_path(post.id) do
-            = l post.created_at, format: :long 
-          '
-        span.author
-          'by
-          span.username= post.user.try(:username)
+    = render 'entry', post: post
+
     
   = will_paginate @posts
         
