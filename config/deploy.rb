@@ -47,6 +47,11 @@ namespace :deploy do
     put File.read("config/newrelic.yml"), "#{shared_path}/config/newrelic.yml"
   end
 
+  desc 'setup production.local.yml'
+  task :setup_production_local, :roles => :app do
+    put File.read("config/settings/production.local.yml.example"), "#{shared_path}/config/settings/production.local.yml"
+  end
+
   desc 'setup newrelic config'
   task :setup_newrelic_config, :roles => :app do
     put File.read("config/newrelic.yml"), "#{shared_path}/config/newrelic.yml"
@@ -72,6 +77,7 @@ namespace :deploy do
     setup_nginx_config
     setup_unicorn_init_config
     setup_newrelic_config
+    setup_production_local
     puts "Now edit the config files in #{shared_path}."
   end
 
@@ -88,23 +94,22 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 
   task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
-    run "ln -nfs #{shared_path}/config/settings #{release_path}/config/settings"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn.rb"
     run "ln -nfs #{shared_path}/config/nginx.conf #{release_path}/config/nginx.conf"
     run "ln -nfs #{shared_path}/config/unicorn_init #{release_path}/config/unicorn_init"
     run "ln -nfs #{shared_path}/public/uploads #{release_path}/public/uploads"
     run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
+    run "ln -nfs #{shared_path}/config/settings/production.local.yml #{release_path}/config/settings/production.local.yml"
   end
 
   desc "Sync the public/assets directory."
   task :assets_sync do
     system('bundle exec rake assets:precompile')
     find_servers(:roles => :web).each do |s|
-      system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{s}:#{release_path}/"
+      system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{s}:#{release_path}/public/"
     end
-    system('rm -rf public/assets')
+    #system('rm -rf public/assets')
   end
 
   task :precompile_assets, :roles => :web do 

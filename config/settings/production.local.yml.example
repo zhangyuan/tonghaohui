@@ -1,0 +1,7 @@
+secret_token: '' 
+auth:
+  weibo:
+    api_key: ''
+    api_secret: ''
+    redirect_uri: ''
+    scope: ''
