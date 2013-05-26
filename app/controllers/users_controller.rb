@@ -1,7 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user_sign_out
-  
+  before_filter :require_user_sign_out  
   before_filter :require_profile_without_user
 
   def new

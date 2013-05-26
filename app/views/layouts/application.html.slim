@@ -36,6 +36,8 @@ html
                 ul.sidebar_actions
                   li
                     b= current_user.username
+                  li
+                    = link_to '修改密码', change_password_my_url
                   li= link_to '退出', sign_out_url
               - else
                 - if sidebar_sign_in_form?

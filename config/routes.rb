@@ -14,6 +14,13 @@ S1::Application.routes.draw do
   get 'sign_in' => 'sessions#new', as: 'sign_in'
   get 'sign_out' => 'sessions#destroy', as: 'sign_out'
   
+  resource 'my', controller: 'my', only: [] do
+    collection do
+      get 'change_password'
+      put 'update_password'
+    end
+  end
+  
   resources :sessions, only: [:create]
   
   # The priority is based upon order of creation:
