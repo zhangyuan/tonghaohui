@@ -13,4 +13,5 @@
  *= require posts
  *= require sessions
  *= require my
+ *= require users
  */

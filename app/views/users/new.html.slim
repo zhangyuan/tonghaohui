@@ -1,9 +1,10 @@
 .page-header
   h1 注册
   
-= simple_form_for @user do |f|
-  = f.input :username
-  = f.input :password
-  = f.input :password_confirmation
-  .form-actions
-    = f.submit
+.users.register
+  = simple_form_for @user do |f|
+    = f.input :username, required: false
+    = f.input :password
+    = f.input :password_confirmation
+    .form-actions
+      = f.submit
