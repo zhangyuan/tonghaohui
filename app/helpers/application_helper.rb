@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def tracking_code
-    Settings.tracking_code 
+    Settings.tracking_code.to_s.html_safe
   end
 end
