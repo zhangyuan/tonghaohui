@@ -1,0 +1,40 @@
+upstream tonghaohui_unicorn_server {
+  server unix:/tmp/tonghaohui.sock  fail_timeout=0;
+}
+
+server {
+  listen 80;
+  server_name www.tonghaohui.com;
+  client_max_body_size 5M;
+
+  root /home/deployer/apps/tonghaohui/current/public;
+
+  location ~ ^/(assets)/  {
+    gzip_static on; # to serve pre-gzipped version
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  gzip  on;
+  gzip_http_version 1.1;
+  gzip_vary on;
+  gzip_comp_level 6;
+  gzip_disable “MSIE [1-6].(?!.*SV1)”;
+
+  location / { 
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Forwarded-Host $host;
+    proxy_set_header   X-Forwarded-Server $host;
+
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_buffering    on; 
+
+    if (!-f $request_filename) {
+      proxy_pass http://tonghaohui_unicorn_server;
+      break;
+    }   
+  }   
+  access_log /home/deployer/apps/tonghaohui/shared/log/access.log;
+  error_log /home/deployer/apps/tonghaohui/shared/log/error.log;
+}
