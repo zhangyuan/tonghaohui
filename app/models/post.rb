@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   
   validate :title_and_url_cannot_be_both_empty
   
+  belongs_to :user
+  
   def title_and_url_cannot_be_both_empty
     if title.blank? && url.blank?
       errors.add(:url, '标题和url不能同时为空')

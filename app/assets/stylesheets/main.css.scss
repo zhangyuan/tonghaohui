@@ -1,0 +1,19 @@
+@import "compass/css3/inline-block";
+@import "compass/css3/border-radius";
+
+a.btn {
+  @include inline-block;
+  background-color: #ddd;
+  @include border-radius(4px);
+  padding: 5px;
+  text-decoration: none;
+  &:hover {
+    background-color: #222;
+    color: white;
+    text-decoration: underline;
+  }
+  &:visited {
+    color: #AAA;
+  }
+  color: #AAA;
+}

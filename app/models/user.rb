@@ -2,6 +2,8 @@
 class User < ActiveRecord::Base
   attr_accessible :password, :username, :password, :password_confirmation
   
+  has_many :posts
+
   validates :password, presence: :password, length: 5..40,
     confirmation: true, if: Proc.new {|u| u.new_record? || u.password_digest_changed? || !u.password.nil?}
   validates :password_confirmation,
@@ -21,5 +23,13 @@ class User < ActiveRecord::Base
 
   def authenticate(unencrypted_password)
     BCrypt::Password.new(password_digest) == unencrypted_password && self
+  end
+  
+  def can_edit_post?(post)
+    post.user_id == self.id
+  end
+  
+  def can_destroy_post?(post)
+    post.user_id == self.id
   end
 end

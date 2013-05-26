@@ -1,5 +1,6 @@
+# encoding: utf-8
 class PostsController < ApplicationController
-  require_sign_in only: [:new, :create]
+  require_sign_in only: [:new, :create, :edit, :update, :destroy]
   
   def new
     @post = Post.new
@@ -7,10 +8,13 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    return unless can_edit_post?(@post)
   end
   
   def update
     @post = Post.find(params[:id])
+    return unless can_edit_post?(@post)
+    
     if @post.update_attributes(params[:post])
       redirect_to post_path(@post)
     else
@@ -27,7 +31,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.new(params[:post])
     if @post.save
       redirect_to posts_url
     else
@@ -37,6 +41,21 @@ class PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
+    return unless can_destroy_post?(@post)
     redirect_to posts_path
   end
+  
+  protected
+  
+  def can_edit_post?(post)
+    unless current_user.can_edit_post?(@post)
+      flash[:alert] = '对不起，你没有权限操作'
+      redirect_to post_path(@post) and return
+      false
+    else
+      true
+    end
+  end
+  
+  alias_method :can_destroy_post?, :can_edit_post?
 end
