@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.13'
 
@@ -8,6 +9,7 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'rails_config'
 gem 'slim-rails'
+gem 'slim', '>= 1.3.8'
 gem 'simple_form', '>= 2.0.1'
 gem 'will_paginate'
 gem 'oj'

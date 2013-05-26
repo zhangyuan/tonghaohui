@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.order('id desc')
+    @posts = Post.order('id desc').page(current_page).per_page(20)
   end
   
   def show
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   protected
   
   def can_edit_post?(post)
-    unless current_user.can_edit_post?(@post)
+    unless post.edited_by?(current_user)
       flash[:alert] = '对不起，你没有权限操作'
       redirect_to post_path(@post) and return
       false

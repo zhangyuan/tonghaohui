@@ -3,4 +3,7 @@
   = f.input :url
   = f.input :content
   .form-actions
-    = f.submit
+    - if @post.new_record?
+      = f.submit '提交'
+    - else
+      = f.submit '修改'

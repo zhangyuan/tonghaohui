@@ -27,8 +27,8 @@ class UsersController < ApplicationController
       flash[:notice] = '已经绑定到其他账户，请先登录后解除绑定'
       redirect_to root_path
     elsif current_profile.blank?
-      flash[:notice] = '请先通过第三方账户登录'
-      redirect_to new_connect_url
+      flash[:notice] = '请先通过第三方账户登录，登录后可以创建用户'
+      redirect_to sign_in_path
     end
   end
 end

@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "compass/css3/inline-block";
+@import "compass/css3/border-radius";
+@import "compass/typography/links/link-colors";
+@import "compass/utilities/links/hover-link";
 
 form.simple_form {
   &.new_post, &.edit_post {
@@ -21,5 +24,41 @@ form.simple_form {
       text-align: center;
     }
   }
+}
 
+.posts.list {
+  padding: 10px 0;
+  .post.entry {
+    margin-bottom: 6px;
+    padding: 10px;
+    background-color: lighten(#90CA77, 30%);
+    @include border-radius(5px);
+    span.host {
+      font-size: 10px;
+      color: #333;
+    }
+    
+    a {
+      @include hover-link;
+      @include link-colors(black, #0F3B5F);
+    }
+    span.username {
+      font-weight: bold;
+    }
+  }
+}
+
+.posts.show {
+  span.username {
+    font-weight: bold;
+  }
+  .url {
+    margin: 6px auto;
+    background-color: #E6E6CC;
+    @include border-radius(5px);
+    padding: 5px;
+  }
+  .content {
+    margin: 6px auto;
+  }
 }

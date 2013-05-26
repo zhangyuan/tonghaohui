@@ -1,17 +1,24 @@
-.page-title
+.posts.show.page-title
   h1= @post.title
-  
-.show
-  h2 URL
-  .url= @post.url
-  h2 Content
-  .content= simple_format @post.content
-  h2 User
-  .user = @post.user.username
+  .info
+    span.created_at
+      = l @post.created_at, format: :long
+      '
+    span.author
+      'by
+      span.username= @post.user.username
+.posts.show.details
+  - if @post.url.present?
+    .url 
+      ' 链接
+      '
+      = link_to @post.url, @post.url, target: '_blank'
 
-.form-actions
-  = link_to t('helpers.remove'), post_path(@post), method: 'delete', class: 'btn' if current_user.try(:can_destroy_post?, @post)
+  .content= simple_format @post.content
+
+.posts.show.form-actions
+  = link_to t('helpers.remove'), post_path(@post), method: 'delete', class: 'btn' if @post.removed_by?(current_user)
   '
-  = link_to t('helpers.edit'), edit_post_path(@post), class: 'btn' if current_user.try(:can_edit_post?, @post)
+  = link_to t('helpers.edit'), edit_post_path(@post), class: 'btn' if @post.edited_by?(current_user)
   '
   = link_to t('helpers.back'), posts_path, class: 'btn'

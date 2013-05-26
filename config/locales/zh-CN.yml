@@ -4,3 +4,38 @@ zh-CN:
     remove: 删除
     new: 创建
     back: 返回
+  simple_form:
+    labels:
+      user:
+        username: 用户名
+        password: 密码
+  activerecord:
+    models:
+      user: 用户
+    attributes:
+      user:
+        username: 用户名
+        password: 密码
+        password_confirmation: 确认密码
+      post:
+        title: 标题
+        url: URL
+        content: 内容
+  will_paginate:
+    previous_label: "&#8592; 上一页"
+    next_label: "下一页 &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+      single_page_html:
+        zero:  "No %{model} found"
+        one:   "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+  

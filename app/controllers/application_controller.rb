@@ -57,4 +57,8 @@ class ApplicationController < ActionController::Base
       redirect_to sign_in_path
     end
   end
+  
+  def current_page
+    [[params[:page].to_i, 1].max, 100].min
+  end
 end

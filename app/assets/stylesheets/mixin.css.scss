@@ -1,0 +1,27 @@
+$red: #DD1E2F;
+$yellow: yellow;
+
+@mixin like-link {
+  a.like {
+    background-color: $yellow;
+    color: $red;
+    
+    &:hover {
+      background-color: darken($yellow, 3%);
+      color: darken($red, 5%);
+    }   
+  }
+  
+  a.liked {
+    color: yellow;
+    background-color: $red;
+  }
+}
+
+@mixin page-title {
+  h1 {
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+  }
+}

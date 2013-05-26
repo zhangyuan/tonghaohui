@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+  title S1
+  = stylesheet_link_tag    "application", :media => "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+
+  body
+    #content
+      #content-inner
+        #header-wrapper
+          #header
+            #banner
+              '
+            #nav
+              #nav-inner
+                .logo
+                  = link_to '同好汇', root_url
+                .clear
+            .clear
+          .clear
+        #main-wrapper
+          #main
+            #main-left
+              - if flash.present?
+                .flash
+                  - flash.each do |name, text|
+                    div class="#{name} entry" =text
+              = yield
+            #main-right
+              - if sidebar_submit_new_post_button?
+                .actions
+                  = link_to '提交新内容', new_post_path, class: 'btn'
+              - if current_user
+                ul.sidebar_actions
+                  li
+                    b= current_user.username
+                  li= link_to '退出', sign_out_url
+              - else
+                - if sidebar_sign_in_form?
+                  = render 'layouts/sidebars/sign_in'
+                  
+            .clear
+          .clear
+        #footer-wrapper
+          #footer
+            ' &copy; Copyright tonghaohui.com

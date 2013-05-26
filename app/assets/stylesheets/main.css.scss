@@ -1,7 +1,17 @@
+@import "compass/reset/utilities";
 @import "compass/css3/inline-block";
+@import "compass/utilities/general/float";
 @import "compass/css3/border-radius";
+@import "compass/typography/links/link-colors";
+@import "compass/typography/lists/inline-list";
+@import "compass/utilities/general/min";
 
-a.btn {
+
+@include global-reset;
+
+@import 'mixin';
+
+.btn {
   @include inline-block;
   background-color: #ddd;
   @include border-radius(4px);
@@ -16,4 +26,249 @@ a.btn {
     color: #AAA;
   }
   color: #AAA;
+}
+
+input.btn {
+  border: 1px;
+  background-color: #ccc;
+  cursor: hand;
+  cursor: pointer;
+  color: black;
+}
+
+$nav_height: 50px;
+
+em {
+  font-style:normal;
+}
+@mixin top-navbar-item {
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+    background-color: $red;
+    display: block;
+    float: left;
+    text-decoration: none;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: $nav_height;
+    line-height: $nav_height;
+    margin: none;
+  }
+}
+
+body {
+  font-size: 18px;
+  text-align: center;
+//  background: #FFF image-url('bg.png') repeat fixed center;
+  font: 12px/1.5 tahoma, arial, simsun, sans-serif;
+}
+
+$nav-bg-color: #81C6DD;
+#header-wrapper {
+  height: $nav_height;
+
+  #banner {
+    background-color: white;
+    display: none;
+  }
+  background-color: $nav-bg-color;
+  clear: both;
+  #nav {
+    height: $nav_height;
+    #nav-inner {
+      height: $nav_height;
+//      padding-left: 10px;
+//      padding-right: 10px;
+      .logo {
+        float: left;
+        height: $nav_height;
+        line-height: $nav_height;
+        width: 122px;
+//        background-color: white;
+        overflow: hidden;
+        text-align: center;
+        a {
+          @include inline-block;
+          width: 100%;
+          text-decoration: none;
+          color: white;
+          &:visited {
+            color: white;
+          }
+        }
+        &:hover {
+          background-color: darken($nav-bg-color, 10%);
+        }
+      }
+      font-size: 18px;
+      background-color: $nav-bg-color;
+      .sites {
+        float: left;
+        height: 100%;
+        display: inline-block;
+        font-size: 20px;
+        @include top-navbar-item;
+        font-weight: bold;
+        &.active {
+          a {
+            background-color: darken($red, 8%);
+          }
+        }
+      }
+      ul#menu {
+        float: left;
+        font-size: 16px;
+        @include inline-list;
+        height: $nav_height;
+        li {
+          height: $nav_height;
+          line-height: $nav_height;
+          display: inline-block;
+          float: left;
+          &.active a{
+            background-color: darken($red, 5%);
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          @include top-navbar-item;
+        }
+      }
+    }
+  }
+}
+
+#nav {
+  margin: 0 auto;
+  width: 975px;
+  text-align: left;
+}
+
+#main-wrapper {
+  clear: both;
+  text-align: center;
+  @include min-height(800px);
+}
+
+#main {
+  margin: 0 auto;
+  width: 975px;
+  clear: both;
+}
+
+#main-left {
+  width: 675px;
+  float: left;
+  text-align: left;
+}
+
+@mixin sidebar {
+  margin-left: 10px;
+  padding: 10px;
+}
+#main-right {
+  width: 300px;
+  text-align: left;
+  float: left;
+  text-align: left;
+  
+  .actions {
+    @include sidebar;
+  }
+  ul.sidebar_actions {
+    @include sidebar;
+  }
+  
+  .sign_in {
+    @include sidebar;
+    border: 1px solid #ddd;
+    form.sign_in_form {
+      @include border-radius(5px);
+      
+      input.string {
+        width: 115px;
+        border:none;
+        background-color: #ddd;
+        @include border-radius(5px);
+        padding: 5px;
+      }
+      
+      .form-actions {
+        margin-top: 5px;
+      }
+    }
+    .connects {
+      margin-top: 10px;
+      li {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+#footer {
+  text-align: center;
+  background-color: #0F3B5F;
+  padding: 30px;
+  color: white;
+}
+
+p.errors {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #ECC5A8;
+  color: #C9341C;
+  @include border-radius(4px);
+}
+.clear {
+  clear: both;
+}
+
+h1 {
+  font-size: 28px;
+  &.page-title {
+    margin-top: 15px;
+    margin-bottom: 13px;
+  }
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.flash {
+  margin: 10px auto;
+  .entry {
+    padding: 8px;
+    @include border-radius(5px);
+  }
+  .notice {
+    background-color: #CCFFCC;
+  }
+  
+  .alert {
+    background-color: #CC3300;
+    color: white;
+  }
+}
+
+form .error {
+  color: red;
 }
