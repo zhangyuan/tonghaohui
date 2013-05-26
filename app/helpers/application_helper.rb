@@ -10,4 +10,8 @@ module ApplicationHelper
   def sidebar_submit_new_post_button?
     true
   end
+  
+  def seo_title
+    t('seo.title')
+  end
 end
