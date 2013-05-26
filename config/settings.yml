@@ -4,3 +4,5 @@ auth:
     app_secret: ''
     redirect_uri: ''
     scope: ''
+tracking_code:
+  ""

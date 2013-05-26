@@ -14,4 +14,8 @@ module ApplicationHelper
   def seo_title
     t('seo.title')
   end
+
+  def tracking_code
+    Settings.tracking_code 
+  end
 end
