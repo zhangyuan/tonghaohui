@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     return unless can_edit_post?(@post)
     
-    if @post.update_attributes(params[:post].params[:post].slice(:title, :url, :content))
+    if @post.update_attributes(params[:post].slice(:title, :url, :content))
       redirect_to post_path(@post)
     else
       render :edit

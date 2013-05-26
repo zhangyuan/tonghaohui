@@ -60,10 +60,8 @@ em {
 }
 
 body {
-  font-size: 18px;
   text-align: center;
-//  background: #FFF image-url('bg.png') repeat fixed center;
-  font: 12px/1.5 tahoma, arial, simsun, sans-serif;
+  font: 14px/1.75 Arial,Helvetica,sans-serif;
 }
 
 $nav-bg-color: #81C6DD;
@@ -229,26 +227,6 @@ p.errors {
   clear: both;
 }
 
-h1 {
-  font-size: 28px;
-  &.page-title {
-    margin-top: 15px;
-    margin-bottom: 13px;
-  }
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-h4 {
-  font-size: 18px;
-}
-
 .pagination {
   text-align: center;
 }
@@ -271,4 +249,33 @@ h4 {
 
 form .error {
   color: red;
+}
+
+h1  { 
+  font-size: 2em;
+  margin: .67em 0;
+}
+h2 {
+  font-size: 1.5em; 
+  margin: .75em 0;
+}
+h3 {
+  font-size: 1.17em;
+  margin: .83em 0;
+}
+
+h4 {
+}
+
+h5 {
+  font-size: .83em;
+  margin: 1.5em 0;
+}
+h6 {
+  font-size: .75em;
+  margin: 1.67em 0;
+}
+
+h1, h2, h3, h4, h5, h6, b, strong {
+  font-weight: bolder;
 }
