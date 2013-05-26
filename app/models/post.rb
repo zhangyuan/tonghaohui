@@ -5,10 +5,19 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   
   validate :content_and_url_cannot_be_both_empty
+  validate :url_should_be_valid
   
   belongs_to :user
   
   include Publishable
+  
+  def url_should_be_valid
+    return if url.blank?
+    uri = URI.parse(url)
+    unless [URI::HTTP, URI::HTTPS].include?(uri.class)
+      errors.add(:url, 'URL不合法，请检查')
+    end
+  end
   
   def content_and_url_cannot_be_both_empty
     if content.blank? && url.blank?
