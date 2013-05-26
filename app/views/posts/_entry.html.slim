@@ -1,7 +1,7 @@
 .post.entry
   .title
     - if post.url.present?
-      = link_to post.title, post.url, target: '_blank'
+      = link_to post.title, post.url, target: '_blank', class: 'title'
       '
       span.host= "[#{fetch_url_host(post.url)}]"
     - else
