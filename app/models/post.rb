@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
   
   belongs_to :user
   
+  include Publishable
+  
   def content_and_url_cannot_be_both_empty
     if content.blank? && url.blank?
       errors.add(:url, '内容和URL不能同时为空')

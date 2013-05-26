@@ -1,4 +1,7 @@
 zh-CN:
+  publish_status:
+    published: 已发布
+    deleted: 已删除
   helpers:
     edit: 编辑
     remove: 删除

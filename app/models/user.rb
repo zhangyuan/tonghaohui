@@ -24,12 +24,4 @@ class User < ActiveRecord::Base
   def authenticate(unencrypted_password)
     BCrypt::Password.new(password_digest) == unencrypted_password && self
   end
-  
-  def can_edit_post?(post)
-    post.user_id == self.id
-  end
-  
-  def can_destroy_post?(post)
-    post.user_id == self.id
-  end
 end

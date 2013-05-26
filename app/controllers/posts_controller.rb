@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     return unless can_edit_post?(@post)
     
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(params[:post].params[:post].slice(:title, :url, :content))
       redirect_to post_path(@post)
     else
       render :edit
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.order('id desc').page(current_page).per_page(20)
+    @posts = Post.order('id desc').published_as(:published).page(current_page).per_page(20)
   end
   
   def show
@@ -31,7 +31,8 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.new(params[:post])
+    @post = current_user.posts.new(params[:post].slice(:title, :url, :content))
+    @post.published_as = :published
     if @post.save
       redirect_to posts_url
     else
@@ -42,6 +43,8 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     return unless can_destroy_post?(@post)
+    @post.published_as = :deleted
+    @post.save!
     redirect_to posts_path
   end
   
