@@ -1,5 +1,10 @@
 .posts.show.page-title
-  h1= @post.title
+  h1
+    = @post.title
+  div.tag_list
+    - @post.tag_list.each do |tag_name|
+      span.tagging= link_to tag_name, tag_url(tag_name)
+      '
   .info
     span.created_at
       = l @post.created_at, format: :long

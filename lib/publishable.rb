@@ -1,18 +1,17 @@
 # -*- encoding : utf-8 -*-
 module Publishable
-  PUBLISH_STATUSES = %w(published deleted).freeze
   extend ActiveSupport::Concern
 
   class PublishingStatusNotFound < RuntimeError; end
   
   included do
-    PUBLISH_STATUSES.each do |status|
+    publish_statuses.each do |status|
       define_method "is_#{status}?" do
         self.published_as == status
       end
     end
 
-    validates :published_as, inclusion: PUBLISH_STATUSES
+    validates :published_as, inclusion: publish_statuses
 
     attr_accessible :published_as
 
@@ -23,11 +22,11 @@ module Publishable
 
   module ClassMethods
     def fetch_publish_status_ids(*args)
-      args.map {|status| PUBLISH_STATUSES.index(status.to_s)}
+      args.map {|status| publish_statuses.index(status.to_s)}
     end
 
     def fetch_publish_statuses(*args)
-      args.map {|status_id| PUBLISH_STATUSES.at status_id.to_i}
+      args.map {|status_id| publish_statuses.at status_id.to_i}
     end
 
     def publish_status_i18n_name(status)
@@ -35,11 +34,11 @@ module Publishable
     end
     
     def publish_statuses
-      PUBLISH_STATUSES
+      %w(published deleted).freeze
     end
     
     def fetch_publish_status_id(status)
-      PUBLISH_STATUSES.index(status.to_s)
+      publish_statuses.index(status.to_s)
     end
   end
 

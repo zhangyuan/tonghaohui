@@ -33,6 +33,21 @@ form.simple_form {
 $defalt_color: #AAA;
 $hover_color: #0F3B5F;
 
+.posts {
+  &.show .tag_list {
+    margin-bottom: 15px;
+  }
+  .tag_list {
+    font-size: 11px;
+    span.tagging a {
+      @include inline-block;
+      padding: 1px 5px;
+      background-color: #D4E7ED;
+      @include border-radius(5px);
+      @include link-colors($defalt_color, $hover_color);
+    }
+  } 
+}
 .posts.list {
   padding: 10px 0;
   .post.entry {
@@ -43,17 +58,6 @@ $hover_color: #0F3B5F;
     span.host {
       font-size: 11px;
       color: $defalt_color;
-    }
-    
-    span.tag_list {
-      font-size: 11px;
-      span.tagging a {
-        @include inline-block;
-        padding: 1px 5px;
-        background-color: #D4E7ED;
-        @include border-radius(5px);
-        @include link-colors($defalt_color, $hover_color);
-      }
     }
     
     a {

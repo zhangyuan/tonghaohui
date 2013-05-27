@@ -2,7 +2,7 @@
   = f.input :title, required: false
   = f.input :url
   = f.input :content
-  = f.input :tag_list
+  = f.input :tag_list, input_html: {value: @post.tag_list.join(' ')}
   div
     label
     span.hint 多个标签用空格分开，最多5个。英文点号 . 会被替换为下划线 _

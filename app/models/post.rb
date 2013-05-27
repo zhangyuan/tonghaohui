@@ -34,19 +34,22 @@ class Post < ActiveRecord::Base
     user && user_id == user.id
   end
   
-  def tag_list= (list)
+  def tag_list=(list)
     @tag_list = list.is_a?(String) ? list.split : list
     @tag_list.uniq!
 
-    new_taggings = self.taggings.select {|tagging| @tag_list.include?(tagging.title)}
+    remaining_taggings = self.taggings.select {|tagging| @tag_list.include?(tagging.title)}
+    removing_taggings = self.taggings - remaining_taggings
+    removing_taggings.each {|t| t.published_as=:deleted; t.save}
     
-    (@tag_list - new_taggings.map(&:title)).each do |tag_name|
-      new_taggings.push self.taggings.build(title: tag_name.to_s.gsub('.', '_'))
-    end
-    self.taggings = new_taggings
+    (@tag_list - remaining_taggings.map(&:title)).map do |tag_name|
+      self.taggings.build(title: tag_name.to_s.gsub('.', '_'), published_as: :published)
+    end.map(&:save)
+
+    @tag_list
   end
   
   def tag_list
-    self.taggings.map(&:title).join(' ')
+    @tag_list || self.taggings.published_as(:published).map(&:title)
   end
 end

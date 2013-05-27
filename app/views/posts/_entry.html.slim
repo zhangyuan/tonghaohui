@@ -8,9 +8,9 @@
       = link_to post.title, post_path(post.id)
     span.tag_list
       '
-      - post.taggings.each do |tagging|
+      - post.tag_list.each do |tag_name|
         span.tagging
-          = link_to tagging.title, tag_url(tagging.title)
+          = link_to tag_name, tag_url(tag_name)
         '
   .info
     span.created_at
