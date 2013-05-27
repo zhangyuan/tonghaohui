@@ -36,6 +36,7 @@ class Post < ActiveRecord::Base
   
   def tag_list= (list)
     @tag_list = list.is_a?(String) ? list.split : list
+    @tag_list.uniq!
 
     new_taggings = self.taggings.select {|tagging| @tag_list.include?(tagging.title)}
     
