@@ -11,7 +11,19 @@ class Post < ActiveRecord::Base
   has_many :taggings, foreign_key: 'taggable_id'
   
   include Publishable
-  
+
+  attr_accessor :published_taggings
+
+  scope :includes_published_taggings, lambda { } do
+    def fetch_published_taggings
+      published_taggings = Tagging.published_as(:published).where(taggable_id: map(&:id))
+      each do |post|
+        post.published_taggings = published_taggings.select {|t| t.taggable_id == post.id}
+      end
+      self
+    end
+  end
+
   def url_should_be_valid
     return if url.blank?
     uri = URI.parse(url)

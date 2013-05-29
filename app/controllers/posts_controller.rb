@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.order('id desc').includes(:taggings, :user).published_as(:published).page(current_page).per_page(20)
+    @posts = Post.order('id desc').includes(:user).includes_published_taggings.published_as(:published).page(current_page).per_page(20)
   end
   
   def show
