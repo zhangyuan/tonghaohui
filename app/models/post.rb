@@ -70,4 +70,8 @@ class Post < ActiveRecord::Base
   def tag_list
     @tag_list || self.taggings.published_as(:published).map(&:title)
   end
+
+  def published_taggings
+    @published_taggings ||= self.taggings.published_as(:published)
+  end
 end
