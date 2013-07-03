@@ -28,6 +28,10 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+
+    append_seo_title(@post.title)
+    append_seo_title " - "
+    append_seo_title(seo_site_title)
   end
   
   def create

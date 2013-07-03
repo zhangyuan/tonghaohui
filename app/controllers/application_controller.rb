@@ -61,4 +61,30 @@ class ApplicationController < ActionController::Base
   def current_page
     [[params[:page].to_i, 1].max, 100].min
   end
+
+  helper_method :seo_title, :append_seo_title, :prepend_seo_title
+
+  def seo_title
+    @seo_title ||= default_seo_title
+  end
+
+  def append_seo_title(title)
+    @seo_title ||= ""
+    @seo_title.concat title
+  end
+
+  def prepend_seo_title(title)
+    @seo_title ||= ""
+    @seo_title.prepend title
+  end
+
+  def default_seo_title
+    t('seo.title')
+  end
+
+  def seo_site_title
+    t('seo.title')
+  end
+
+  alias seo_site_title default_seo_title
 end
