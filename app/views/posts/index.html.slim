@@ -1,5 +1,5 @@
 .posts.list
-  - @posts.fetch_published_taggings.each do |post|
+  - @posts.each do |post|
     = render 'entry', post: post
 
     

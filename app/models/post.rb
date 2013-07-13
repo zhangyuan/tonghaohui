@@ -9,20 +9,9 @@ class Post < ActiveRecord::Base
   
   belongs_to :user
   has_many :taggings, foreign_key: 'taggable_id'
+  has_many :published_taggings, foreign_key: 'taggable_id', class_name: 'Tagging', conditions: {publishing_status: Tagging.fetch_publish_status_ids(:published)}
   
   include Publishable
-
-  attr_accessor :published_taggings
-
-  scope :includes_published_taggings, lambda { } do
-    def fetch_published_taggings
-      published_taggings = Tagging.published_as(:published).where(taggable_id: map(&:id))
-      each do |post|
-        post.published_taggings = published_taggings.select {|t| t.taggable_id == post.id}
-      end
-      self
-    end
-  end
 
   def url_should_be_valid
     return if url.blank?
@@ -71,7 +60,4 @@ class Post < ActiveRecord::Base
     @tag_list || self.taggings.published_as(:published).map(&:title)
   end
 
-  def published_taggings
-    @published_taggings ||= self.taggings.published_as(:published)
-  end
 end
