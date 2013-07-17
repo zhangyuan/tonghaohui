@@ -24,6 +24,10 @@ class PostsController < ApplicationController
   
   def index
     @posts = Post.order('id desc').includes(:user, :published_taggings).published_as(:published).page(current_page).per_page(20)
+    respond_to do |format|
+      format.html
+      format.rss {render layout: false}
+    end
   end
   
   def show
