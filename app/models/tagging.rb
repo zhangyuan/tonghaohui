@@ -9,4 +9,8 @@ class Tagging < ActiveRecord::Base
   def set_indexable
     self.indexable = title.downcase
   end
+
+  def self.clound
+    published_as(:published).order('id DESC').group(:title).count
+  end
 end

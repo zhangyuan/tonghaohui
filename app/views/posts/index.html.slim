@@ -1,7 +1,4 @@
 .posts.list
   - @posts.each do |post|
     = render 'entry', post: post
-
-    
   = will_paginate @posts
-        

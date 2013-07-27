@@ -6,6 +6,7 @@
 @import "compass/css3/border-radius";
 @import "compass/typography/links/link-colors";
 @import "compass/utilities/links/hover-link";
+@import "mixin";
 
 form.simple_form {
   &.new_post, &.edit_post {
@@ -30,13 +31,12 @@ form.simple_form {
   }
 }
 
-$defalt_color: #AAA;
-$hover_color: #0F3B5F;
 
 .posts {
   &.show .tag_list {
     margin-bottom: 15px;
   }
+
   .tag_list {
     font-size: 11px;
     span.tagging a {
@@ -44,7 +44,7 @@ $hover_color: #0F3B5F;
       padding: 1px 5px;
       background-color: #D4E7ED;
       @include border-radius(5px);
-      @include link-colors($defalt_color, $hover_color);
+      @include link-colors($default_color, $hover_color);
     }
   } 
 }
@@ -57,7 +57,7 @@ $hover_color: #0F3B5F;
     @include border-radius(5px);
     span.host {
       font-size: 11px;
-      color: $defalt_color;
+      color: $default_color;
     }
     
     a {
@@ -67,7 +67,7 @@ $hover_color: #0F3B5F;
     .info {
       color: #AAA;
       a {
-        @include link-colors($defalt_color, $hover_color);
+        @include link-colors($default_color, $hover_color);
       }
     }
   }

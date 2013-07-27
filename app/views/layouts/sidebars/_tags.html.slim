@@ -1,0 +1,6 @@
+.sidebar_tags
+  h3 标签
+  .tags_clound
+    = cache 'v1/sidebars/tag_clound', expires_in: 3.minutes do
+      - Tagging.clound.each_pair do |title, count|
+        = link_to title, tag_url(title), class: "entry c#{[count / 2, 4].min}", data: {count: count}

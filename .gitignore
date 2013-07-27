@@ -32,6 +32,7 @@
 /config/sidekiq.yml
 /.powenv
 /config/newrelic.yml
+/tags
 
 config/settings.local.yml
 config/settings/*.local.yml

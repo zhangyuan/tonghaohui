@@ -1,5 +1,7 @@
 $red: #DD1E2F;
 $yellow: yellow;
+$default_color: #AAA;
+$hover_color: #0F3B5F;
 
 @mixin like-link {
   a.like {
@@ -24,4 +26,9 @@ $yellow: yellow;
     padding: 10px;
     margin: 10px;
   }
+}
+
+@mixin sidebar {
+  margin-left: 10px;
+  padding: 10px;
 }

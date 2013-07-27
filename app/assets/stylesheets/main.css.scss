@@ -163,11 +163,6 @@ $nav-bg-color: #81C6DD;
   float: left;
   text-align: left;
 }
-
-@mixin sidebar {
-  margin-left: 10px;
-  padding: 10px;
-}
 #main-right {
   width: 300px;
   text-align: left;
@@ -179,6 +174,43 @@ $nav-bg-color: #81C6DD;
   }
   ul.sidebar_actions {
     @include sidebar;
+  }
+
+  div.sidebar_tags {
+    @include sidebar;
+
+    .tags_clound {
+      a.entry {
+        @include link-colors($default_color, $hover_color);
+        padding: 1px 5px;
+        margin-right: 2px;
+        text-decoration: none;
+        @include inline-block;
+        @include border-radius(5px);
+        &:hover {
+          background-color: #D4E7ED;
+        }
+
+        &.c0 {
+          font-size: 14px;
+        }
+        &.c1 {
+          font-size: 16px;
+        }
+        
+        &.c2 {
+          font-size: 18px;
+        }
+
+        &.c3 {
+          font-size: 19px; 
+        }
+
+        &.c4 {
+          font-size: 20px;
+        }
+      }
+    }
   }
   
   .sign_in {

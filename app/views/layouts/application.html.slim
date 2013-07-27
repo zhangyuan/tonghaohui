@@ -44,6 +44,8 @@ html
               - else
                 - if sidebar_sign_in_form?
                   = render 'layouts/sidebars/sign_in'
+              = render 'layouts/sidebars/tags'
+              = yield :sidebars
                   
             .clear
           .clear
