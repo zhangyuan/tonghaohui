@@ -24,6 +24,20 @@ S1::Application.routes.draw do
   get 'tag/:title' => 'taggings#show', as: 'tag'
   
   resources :sessions, only: [:create]
+
+  namespace :admin, path: 'mx' do
+    get 'banners' => 'banners#home', as: 'banners_home'
+
+    scope ':type_name' do
+      resources :banners, only: [:new, :index, :create]
+    end
+
+    resources :banners, only: [:edit, :create, :update, :destroy, :show] do
+      collection do 
+        get "current"
+      end
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

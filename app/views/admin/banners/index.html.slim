@@ -1,0 +1,9 @@
+h1 
+  b= Banner.fetch_i18n_type_name current_type_name
+
+.form-actions
+  = link_to '新建', new_admin_banner_path(current_type_name), class: 'btn btn-primary'
+
+= render 'admin/banners/table', banners: @banners
+
+= will_paginate @banners

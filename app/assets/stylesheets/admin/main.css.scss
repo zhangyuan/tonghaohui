@@ -1,0 +1,35 @@
+$gridColumnWidth: 80px;
+@import "bootstrap";
+
+.simple_form {
+  select.datetime, select.date {
+    width: 6em;
+  }
+
+  input.string, input.text, textarea, .uneditable-input {
+    width: 500px;
+  }
+
+  textarea.url {
+    height: 60px;
+  }
+}
+
+body {
+  word-wrap: break-word;
+}
+
+td.url {
+  width: 300px;
+  word-break:break-all;
+}
+
+span.published_as {
+  &.published {
+    color: #338f41;
+  }
+
+  &.deleted {
+    color: red;
+  }
+}

@@ -1,0 +1,23 @@
+doctype html
+html lang="zh-CN"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= '管理'
+    = stylesheet_link_tag "admin/application", :media => "all"
+    = javascript_include_tag "admin/application"
+
+  body
+    .container
+      .row
+        .span2
+          div
+            h4 同好汇管理
+            ul.nav.nav-pills.nav-stacked
+              li= link_to Banner.model_name.human, admin_banners_home_path
+        .span10
+          .row
+            - flash.each do |name, value|
+              div class="#{name}" =value
+          = yield

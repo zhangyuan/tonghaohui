@@ -1,0 +1,28 @@
+table.table.table-striped
+  thead
+    th ID
+    th 类型
+    th 发布状态
+    th 标题
+    th= Banner.human_attribute_name(:image)
+    th URL
+    th 操作
+  tbody
+    - banners.each do |banner|
+      tr
+        td= banner.id
+        td
+          b= banner.i18n_type_name
+        td class="#{banner.published_as}"
+          span class="published_as #{banner.published_as}" = banner.publishing_status_i18n_name
+        td= link_to banner.title, admin_banner_path(banner)
+        td width="200px"
+          - if banner.image.present?
+            = link_to banner.image_url do
+              = image_tag banner.image_url(:medium)
+        td.url= banner.url
+        td
+          = link_to '编辑', edit_admin_banner_path(banner.id), class: 'btn btn-mini'
+          '
+          - unless banner.is_deleted?
+            = link_to '删除', admin_banner_path(banner.id), :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-mini btn-danger'

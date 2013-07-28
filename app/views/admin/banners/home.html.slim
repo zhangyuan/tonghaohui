@@ -1,0 +1,7 @@
+h1 广告管理
+
+ul.inline
+  li= link_to "当前有效广告", current_admin_banners_path, class: 'btn btn-mini'
+  li= link_to Banner.fetch_i18n_type_name('sidebar'), admin_banners_path(:sidebar), class: 'btn btn-mini'
+
+= render 'admin/banners/table', banners: @banners

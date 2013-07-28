@@ -1,9 +1,12 @@
 zh-CN:
   seo:
     title: 同好汇
-  publish_status:
+  publishing_status:
     published: 已发布
     deleted: 已删除
+  banners:
+    type_name:
+      sidebar: 侧边栏广告
   helpers:
     edit: 编辑
     remove: 删除
@@ -14,9 +17,15 @@ zh-CN:
       user:
         username: 用户名
         password: 密码
+  basic_attributes: &basic_attributes
+    id: ID
+    created_at: 创建时间
+    updated_at: 更新时间
+    published_as: 发布状态
   activerecord:
     models:
       user: 用户
+      banner: 广告
     attributes:
       user:
         username: 用户名
@@ -27,6 +36,15 @@ zh-CN:
         url: URL
         content: 内容
         tag_list: 标签
+      banner:
+        <<: *basic_attributes
+        type_name: 类型
+        image: 图片
+        current_image: 当前图片
+        title: 标题
+        begin_time: 开始时间
+        end_time: 结束时间
+        url: 链接
   will_paginate:
     previous_label: "&#8592; 上一页"
     next_label: "下一页 &#8594;"

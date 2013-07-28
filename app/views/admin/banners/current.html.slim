@@ -1,0 +1,6 @@
+h1 当前有效的广告
+
+.form-actions
+  = link_to '返回', admin_banners_home_path, class: 'btn'
+
+= render 'admin/banners/table', banners: @banners

@@ -1,0 +1,35 @@
+h1 广告
+
+.form-actions
+  = link_to '所有广告', admin_banners_home_path, class: 'btn'
+
+table.table.table-striped
+  thead
+    tr
+      th 属性
+      th 内容
+  tbody
+    tr
+      td ID
+      td= @banner.id
+    tr
+      td= Banner.human_attribute_name :title
+      td= @banner.title
+    tr
+      td= Banner.human_attribute_name :image
+      td
+        - if @banner.image.present?
+          = link_to @banner.image_url do
+            = image_tag(@banner.image_url :medium) if @banner.image.present?
+    tr
+      td= Banner.human_attribute_name :url
+      td= @banner.url
+    tr
+      td= Banner.human_attribute_name :begin_time
+      td= l @banner.begin_time, format: :long
+    tr
+      td= Banner.human_attribute_name :end_time
+      td= l @banner.end_time, format: :long
+    tr
+      td= Banner.human_attribute_name :published_as
+      td= @banner.publishing_status_i18n_name

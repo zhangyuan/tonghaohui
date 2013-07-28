@@ -168,17 +168,25 @@ $nav-bg-color: #81C6DD;
   text-align: left;
   float: left;
   text-align: left;
+
+  .sidebar_entry {
+    @include sidebar;
+  }
   
   .actions {
     @include sidebar;
   }
+
   ul.sidebar_actions {
     @include sidebar;
   }
 
+  .sidebar_banners {
+    a {
+      @include link-colors(#328e72);
+    }
+  }
   div.sidebar_tags {
-    @include sidebar;
-
     .tags_clound {
       a.entry {
         @include link-colors($default_color, $hover_color);

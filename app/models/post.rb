@@ -3,23 +3,15 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :title, :url, :tag_list
   
   validates :title, presence: true
+  validates :url, url: true
   
   validate :content_and_url_cannot_be_both_empty
-  validate :url_should_be_valid
   
   belongs_to :user
   has_many :taggings, foreign_key: 'taggable_id'
-  has_many :published_taggings, foreign_key: 'taggable_id', class_name: 'Tagging', conditions: {publishing_status: Tagging.fetch_publish_status_ids(:published)}
+  has_many :published_taggings, foreign_key: 'taggable_id', class_name: 'Tagging', conditions: {publishing_status: Tagging.fetch_publishing_status_ids(:published)}
   
   include Publishable
-
-  def url_should_be_valid
-    return if url.blank?
-    uri = URI.parse(url)
-    unless [URI::HTTP, URI::HTTPS].include?(uri.class)
-      errors.add(:url, 'URL不合法，请检查')
-    end
-  end
   
   def content_and_url_cannot_be_both_empty
     if content.blank? && url.blank?

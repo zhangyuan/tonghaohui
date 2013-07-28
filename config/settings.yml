@@ -6,3 +6,7 @@ auth:
     scope: ''
 tracking_code:
   ""
+
+admin:
+  username: 's1'
+  password: 's1'

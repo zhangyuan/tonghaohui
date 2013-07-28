@@ -1,0 +1,6 @@
+= f.hidden_field "#{column}_cache"
+- version = version || nil
+- if f.object.send(column).present?
+  = f.input "current_#{column}" do
+    = image_tag f.object.send(column).url(version)
+= f.input column, as: :file

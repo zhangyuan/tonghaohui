@@ -14,4 +14,13 @@ module ApplicationHelper
   def tracking_code
     Settings.tracking_code.to_s.html_safe
   end
+
+  def will_paginate(collection = nil, options = {})
+    options[:renderer] ||= WillPaginate::ActionView::LinkRenderer
+    super
+  end
+
+  def fetch_banner(type_name)
+    Banner.published_as(:published).with_type_name(type_name).current
+  end
 end

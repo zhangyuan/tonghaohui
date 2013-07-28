@@ -31,4 +31,7 @@ $hover_color: #0F3B5F;
 @mixin sidebar {
   margin-left: 10px;
   padding: 10px;
+  img {
+    max-width: 100%;
+  }
 }
