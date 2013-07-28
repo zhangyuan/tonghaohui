@@ -51,8 +51,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     return unless can_destroy_post?(@post)
-    @post.published_as = :deleted
-    @post.save!
+    @post.set_deleted!
     redirect_to posts_path
   end
   

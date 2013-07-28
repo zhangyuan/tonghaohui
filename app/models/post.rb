@@ -57,7 +57,22 @@ class Post < ActiveRecord::Base
   end
   
   def tag_list
-    @tag_list || self.taggings.published_as(:published).map(&:title)
+    @tag_list || self.taggings.published_as(:published).pluck(:title)
   end
 
+  def related_posts
+    tag_ids = Tagging.published_as(:published).where(title: self.tag_list).order('id DESC').limit(20).pluck(:taggable_id)
+    tag_ids.uniq!
+    self.class.published_as(:published).where(id: tag_ids)
+  end
+
+  def set_deleted!
+    self.published_as = :deleted
+    self.save!   
+
+    self.taggings.each do |t|
+      t.published_as = :deleted
+      t.save!
+    end
+  end
 end

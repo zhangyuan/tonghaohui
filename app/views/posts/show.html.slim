@@ -27,3 +27,16 @@
   = link_to t('helpers.edit'), edit_post_path(@post), class: 'btn' if @post.edited_by?(current_user)
   '
   = link_to t('helpers.back'), posts_path, class: 'btn'
+
+- cache ["v1/posts/show/related_posts", @post.id], expires_in: 1.minutes do
+  - if (related_posts = find_related_posts(@post).to_a).present?
+    .posts.list.related-posts
+      h2 相关文章 
+      - related_posts.each do |post|
+        = render 'entry', post: post
+
+- cache ["v1/posts/show/rand_posts", @post.id], expires_in: 90.seconds do
+  .posts.list.rand-posts
+    h2 随机文章
+    - rand_posts(@post).each do |post|
+      = render 'entry', post: post
