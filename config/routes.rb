@@ -14,7 +14,7 @@ S1::Application.routes.draw do
   get 'sign_in' => 'sessions#new', as: 'sign_in'
   get 'sign_out' => 'sessions#destroy', as: 'sign_out'
   
-  get 'banners/click/:id' => 'banners#click', as: 'click_banner'
+  get 'c/banners/:id' => 'banners#click', as: 'click_banner'
 
   resource 'my', controller: 'my', only: [] do
     collection do
