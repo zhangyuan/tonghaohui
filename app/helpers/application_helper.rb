@@ -21,6 +21,6 @@ module ApplicationHelper
   end
 
   def fetch_banner(type_name)
-    Banner.published_as(:published).with_type_name(type_name).current
+    banners = Banner.published_as(:published).with_type_name(type_name).current.limit(30).to_a.sample
   end
 end

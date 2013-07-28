@@ -1,9 +1,10 @@
-- if banner = fetch_banner(:sidebar).first
+- if banner = fetch_banner(:sidebar)
   .sidebar_banners.sidebar_entry
     h3 广告
     .banner
+      - url = click_banner_url(banner.id)
       - if banner.title.present?
-        b= link_to banner.title, banner.url, target: '_blank'
+        b= link_to banner.title, url, target: '_blank'
       - if banner.image.present?
-        = link_to banner.url, target: '_blank' do
+        = link_to url, target: '_blank' do
           = image_tag banner.image_url(:medium)
