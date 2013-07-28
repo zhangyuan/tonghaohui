@@ -183,7 +183,12 @@ $nav-bg-color: #81C6DD;
 
   .sidebar_banners {
     a {
+      display: block;
       @include link-colors(#328e72);
+      text-decoration: none;
+    }
+    .image {
+      text-align: center;
     }
   }
   div.sidebar_tags {

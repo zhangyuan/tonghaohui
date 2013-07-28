@@ -25,8 +25,6 @@
   = link_to t('helpers.remove'), post_path(@post), method: 'delete', class: 'btn' if @post.removed_by?(current_user)
   '
   = link_to t('helpers.edit'), edit_post_path(@post), class: 'btn' if @post.edited_by?(current_user)
-  '
-  = link_to t('helpers.back'), posts_path, class: 'btn'
 
 - cache ["v1/posts/show/related_posts", @post.id], expires_in: 1.minutes do
   - if (related_posts = find_related_posts(@post).to_a).present?
