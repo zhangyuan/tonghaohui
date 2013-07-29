@@ -53,8 +53,9 @@ form.simple_form {
   .post.entry {
     margin-bottom: 6px;
     padding: 10px;
-    background-color: lighten(#90CA77, 30%);
-    @include border-radius(5px);
+    border-bottom: 1px dashed #ddd;
+    //background-color: lighten(#90CA77, 30%);
+    //@include border-radius(5px);
     span.host {
       font-size: 11px;
       color: $default_color;
