@@ -1,5 +1,8 @@
 S1::Application.routes.draw do
   resources :posts
+  get 'c/posts/:id' => 'posts#click', as: 'click_post'
+  get 'c/posts/views/:id' => 'posts#view', as: 'view_post'
+
   get '/' => 'posts#index', as: 'root'
   
   scope constraints: { provider: /weibo|douban/ } do

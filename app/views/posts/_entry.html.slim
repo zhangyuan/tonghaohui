@@ -1,7 +1,7 @@
 .post.entry
   .title
     - if post.url.present?
-      = link_to post.title, post.url, target: '_blank', class: 'title', rel: "nofollow"
+      = link_to post.title, post.url, target: '_blank', class: 'title', rel: "nofollow", data: {click_url: click_post_path(post)}
       '
       span.host= "[#{fetch_url_host(post.url)}]"
     - else
@@ -13,6 +13,9 @@
           = link_to tagging.title, tag_url(tagging.title)
         '
   .info
+    span.clicks title="#{post.visits_count} 次点击"
+      = post.visits_count
+    '
     span.created_at
       = link_to post_path(post.id) do
         = l post.created_at, format: :long 

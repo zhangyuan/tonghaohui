@@ -6,6 +6,9 @@
       span.tagging= link_to tag_name, tag_url(tag_name)
       '
   .info
+    span.clicks title="#{@post.visits_count} 次点击"
+      = @post.visits_count
+    ' 
     span.created_at
       = l @post.created_at, format: :long
       '
@@ -38,3 +41,6 @@
     h2 随机文章
     - rand_posts(@post).each do |post|
       = render 'entry', post: post
+
+javascript:
+  window.posts.view("#{view_post_url(@post.id)}");

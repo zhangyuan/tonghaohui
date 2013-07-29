@@ -3,6 +3,7 @@ table.table.table-striped
     th ID
     th 类型
     th 发布状态
+    th 点击次数
     th 标题
     th= Banner.human_attribute_name(:image)
     th URL
@@ -15,8 +16,9 @@ table.table.table-striped
           b= banner.i18n_type_name
         td class="#{banner.published_as}"
           span class="published_as #{banner.published_as}" = banner.publishing_status_i18n_name
+        td= banner.r_clicks_count
         td= link_to banner.title, admin_banner_path(banner)
-        td width="200px"
+        td width="150px"
           - if banner.image.present?
             = link_to banner.image_url do
               = image_tag banner.image_url(:medium)

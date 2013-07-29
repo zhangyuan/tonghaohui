@@ -7,12 +7,12 @@ class PostsController < ApplicationController
   end
   
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.published_as(:published).find(params[:id])
     return unless can_edit_post?(@post)
   end
   
   def update
-    @post = Post.find(params[:id])
+    @post = Post.published_as(:published).find(params[:id])
     return unless can_edit_post?(@post)
     
     if @post.update_attributes(post_params)
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
+    @post = Post.published_as(:published).find(params[:id])
 
     append_seo_title(@post.title)
     append_seo_title " - "
@@ -49,10 +49,43 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.published_as(:published).find(params[:id])
     return unless can_destroy_post?(@post)
     @post.set_deleted!
     redirect_to posts_path
+  end
+
+  def request_from_self?
+    request.referer.present? and
+      URI.parse(request.referer).host.split('.').last(2) == request.host.split('.').last(2)
+  end
+
+  def view
+    @post = Post.published_as(:published).find(params[:id]) 
+    if request_from_self?
+      @post.r_views_count.increment
+    end
+
+    respond_to do |format|
+      format.html { render text: '^_^' }
+      format.json { render json: {status: 0}}
+    end
+  end
+
+  def click
+    @post = Post.published_as(:published).find(params[:id]) 
+
+    logger.debug "click referer: #{request.referer}"
+    logger.debug "click host: #{request.host}"
+
+    if request_from_self?
+      @post.r_clicks_count.increment
+    end
+
+    respond_to do |format|
+      format.html { render text: '^_^' }
+      format.json { render json: {status: 0}}
+    end
   end
   
   protected

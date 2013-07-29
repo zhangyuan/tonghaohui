@@ -12,7 +12,15 @@ class Post < ActiveRecord::Base
   has_many :published_taggings, foreign_key: 'taggable_id', class_name: 'Tagging', conditions: {publishing_status: Tagging.fetch_publishing_status_ids(:published)}
   
   include Publishable
+  include Redis::Objects
   
+  counter :r_clicks_count
+  counter :r_views_count
+
+  def visits_count
+    @visits_count ||= (r_clicks_count.value + r_views_count.value)
+  end
+
   def content_and_url_cannot_be_both_empty
     if content.blank? && url.blank?
       errors.add(:url, '内容和URL不能同时为空')

@@ -324,3 +324,12 @@ h6 {
 h1, h2, h3, h4, h5, h6, b, strong {
   font-weight: bolder;
 }
+
+span.clicks {
+  @include inline-block;
+  @include border-radius(2px);
+  background-color: lighten(#2BBBD8, 20%);
+  padding: 0px 5px;
+  color: white;
+  font-size: 10px;
+}
