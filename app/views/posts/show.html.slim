@@ -7,7 +7,7 @@
       '
   .info
     span.clicks title="#{@post.visits_count} 次点击"
-      = @post.visits_count
+      = @post.visits_count + 1
     ' 
     span.created_at
       = l @post.created_at, format: :long
