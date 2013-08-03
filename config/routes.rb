@@ -25,8 +25,8 @@ S1::Application.routes.draw do
       put 'update_password'
     end
   end
-  
-  get 'tag/:title' => 'taggings#show', as: 'tag'
+ 
+  get 'tag/:title' => 'taggings#show', as: 'tag', constraints: {title: /[^\/]+/}
   
   resources :sessions, only: [:create]
 

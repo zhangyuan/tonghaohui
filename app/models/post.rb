@@ -48,7 +48,7 @@ class Post < ActiveRecord::Base
     end
 
     (@tag_list - self.taggings.map(&:title)).map do |tag_name|
-      self.taggings << Tagging.new(title: tag_name.to_s.gsub('.', '_'), published_as: :published)
+      self.taggings << Tagging.new(title: tag_name, published_as: :published)
     end
 
     self.taggings.each {|t| t.save}
