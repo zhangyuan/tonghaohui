@@ -30,6 +30,15 @@ class PostsController < ApplicationController
     end
   end
   
+  def from_host
+    @host = params[:name].to_s.strip
+    @posts = Post.where(indexable_host: @host.reverse).order('id desc').published_as(:published).page(current_page).per_page(30).preload(:user, :published_taggings)
+    respond_to do |format|
+      format.html
+    end
+   
+  end
+
   def show
     @post = Post.published_as(:published).find(params[:id])
 
@@ -84,7 +93,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { render text: '^_^' }
-      format.json { render json: {status: 0}}
+      format.json { render json: {status: 0, click: @post.r_clicks_count.value}}
     end
   end
   

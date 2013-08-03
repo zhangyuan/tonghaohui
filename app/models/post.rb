@@ -60,10 +60,15 @@ class Post < ActiveRecord::Base
     @tag_list || self.taggings.published_as(:published).pluck(:title)
   end
 
-  def related_posts
-    tag_ids = Tagging.published_as(:published).where(title: self.tag_list).order('id DESC').limit(20).pluck(:taggable_id)
-    tag_ids.uniq!
-    self.class.published_as(:published).where(id: tag_ids)
+  def published_posts_with_same_tags(options = {})
+    limit = (options[:limit] || 10).to_i
+    post_ids = Tagging.published_as(:published).where(title: self.tag_list).order('id DESC').limit(limit).pluck(:taggable_id)
+    post_ids.uniq!
+    self.class.published_as(:published).where(id: post_ids)
+  end
+
+  def published_posts_with_same_host
+    self.class.published_as(:published).where(indexable_host: self.indexable_host)
   end
 
   def set_deleted!
@@ -73,6 +78,14 @@ class Post < ActiveRecord::Base
     self.taggings.each do |t|
       t.published_as = :deleted
       t.save!
+    end
+  end
+
+  def fetch_url_host
+    if url.present?
+      URI.parse(url).host rescue nil
+    else
+      nil
     end
   end
 end

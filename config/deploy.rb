@@ -113,7 +113,7 @@ namespace :deploy do
     find_servers(:roles => :web).each do |s|
       system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{s}:#{release_path}/public/"
     end
-    #system('rm -rf public/assets')
+    system('rm -rf public/assets')
   end
 
   task :precompile_assets, :roles => :web do 

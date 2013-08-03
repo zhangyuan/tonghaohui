@@ -3,7 +3,9 @@
     - if post.url.present?
       = link_to post.title, post.url, target: '_blank', class: 'title', rel: "nofollow", data: {click_url: click_post_path(post)}
       '
-      span.host= "[#{fetch_url_host(post.url)}]"
+      - if (host = post.fetch_url_host).present?
+        span.host
+          = link_to "[#{host}]", from_host_path(host)
     - else
       = link_to post.title, post_path(post.id), class: 'title'
 

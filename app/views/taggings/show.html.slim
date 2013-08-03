@@ -4,7 +4,7 @@
     = params[:title]
   
 .posts.list
-  - @taggables.each do |post|
-    = render 'posts/entry', post: post
+  - @taggings.each do |tagging|
+    = render 'posts/entry', post: tagging.post
     
   = will_paginate @taggings

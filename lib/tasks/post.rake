@@ -20,4 +20,13 @@ namespace :post do
       end
     end
   end
+
+  desc 'create post indexable_host'
+  task create_indexable_host: :environment do
+    Post.find_each do |post|
+      if (host = post.fetch_url_host).present?
+        post.update_column(:indexable_host, host.reverse)
+      end
+    end
+  end
 end
