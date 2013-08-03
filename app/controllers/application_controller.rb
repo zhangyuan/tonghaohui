@@ -2,10 +2,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  def current
+    if request_from_self?
+      visits_count = Statistic.r_visits_counter.increment    
+      render json: {status: 0, visits_count: visits_count}
+    else
+      render json: {status: 1}
+    end
+  end
+
   protected
   
   helper_method :current_user, :current_profile
     
+  def request_from_self?
+    request.referer.present? and
+      URI.parse(request.referer).host.split('.').last(2) == request.host.split('.').last(2)
+  end
+
   def store_user(user)
     session[:uid] = user.id
   end

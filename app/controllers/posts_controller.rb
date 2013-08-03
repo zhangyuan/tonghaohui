@@ -64,11 +64,6 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def request_from_self?
-    request.referer.present? and
-      URI.parse(request.referer).host.split('.').last(2) == request.host.split('.').last(2)
-  end
-
   def view
     @post = Post.published_as(:published).find(params[:id]) 
     if request_from_self?
