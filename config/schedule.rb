@@ -19,6 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :environment_variable, "RAILS_ENV"
+
 job_type :rake, "cd :path && PATH=#{ENV['PATH']} :environment_variable=:environment bundle exec rake :task --silent :output"
 
 every 15.minutes do
