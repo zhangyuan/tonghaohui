@@ -21,6 +21,10 @@ set :user, 'deployer'
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/apps/#{application}"
 
+set :whenever_command, "bundle exec whenever"
+set :whenever_identifier, "#{application}"
+require "whenever/capistrano"
+
 after "deploy", "deploy:cleanup"
 
 set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
