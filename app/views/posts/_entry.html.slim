@@ -12,8 +12,10 @@
       = post.visits_count
     '
     span.created_at
+      '发表于
       = link_to post_path(post.id) do
-        = l post.created_at, format: :long 
+        abbr.timeago title=post.created_at.iso8601
+          = l post.created_at, format: :long
       '
     span.author
       'by

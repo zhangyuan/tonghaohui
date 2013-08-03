@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.timeago
+//= require jquery.timeago.zh-CN
 //= require main
 //= require posts
