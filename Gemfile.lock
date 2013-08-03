@@ -54,6 +54,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    chronic (0.9.1)
     chunky_png (1.2.8)
     coderay (1.0.8)
     coffee-rails (3.2.2)
@@ -217,6 +218,9 @@ GEM
     webmock (1.9.0)
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
+    whenever (0.8.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.4)
 
 PLATFORMS
@@ -257,4 +261,5 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   webmock
+  whenever
   will_paginate

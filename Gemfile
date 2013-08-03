@@ -21,6 +21,7 @@ gem "hiredis", "~> 0.4.0"
 gem "redis", ">= 2.2.0", :require => ["redis", "redis/connection/hiredis"]
 gem 'redis-objects'
 gem 'redis-namespace'
+gem 'whenever', require: false
 
 # Gems used only for assets and not required
 # in production environments by default.
