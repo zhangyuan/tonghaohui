@@ -17,6 +17,8 @@ class Post < ActiveRecord::Base
   counter :r_clicks_count
   counter :r_views_count
 
+  attr_accessor :skip_indexable_host
+
   def visits_count
     @visits_count ||= (r_clicks_count.value + r_views_count.value)
   end
@@ -31,6 +33,13 @@ class Post < ActiveRecord::Base
     user && user_id == user.id
   end
   
+  def url=(url)
+    r = super 
+    if (host = fetch_url_host).present? && (!skip_indexable_host)
+      self.indexable_host = host.reverse
+    end
+    r
+  end
   def removed_by?(user)
     user && user_id == user.id
   end
