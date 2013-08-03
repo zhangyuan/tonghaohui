@@ -5,13 +5,8 @@
       '
       span.host= "[#{fetch_url_host(post.url)}]"
     - else
-      = link_to post.title, post_path(post.id)
-    span.tag_list
-      '
-      - post.published_taggings.each do |tagging|
-        span.tagging
-          = link_to tagging.title, tag_url(tagging.title)
-        '
+      = link_to post.title, post_path(post.id), class: 'title'
+
   .info
     span.clicks title="#{post.visits_count} 次点击"
       = post.visits_count
@@ -23,3 +18,7 @@
     span.author
       'by
       span.username= post.user.try(:username)
+  .tag_list
+    - post.published_taggings.each do |tagging|
+      span.tagging
+        = link_to tagging.title, tag_url(tagging.title)

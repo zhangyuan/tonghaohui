@@ -40,19 +40,29 @@ form.simple_form {
   .tag_list {
     font-size: 11px;
     span.tagging a {
+      text-decoration: none;
       @include inline-block;
-      padding: 1px 5px;
-      background-color: #D4E7ED;
+      padding: 2px 7px;
+      @include link-colors(#AAA, #000);
+
+      &:hover {
+        background-color: #D4E7ED;
+      }
+      
       @include border-radius(5px);
-      @include link-colors($default_color, $hover_color);
     }
   } 
 }
 .posts.list {
   padding: 10px 0;
   .post.entry {
+    .title {
+      font-size: 16px;
+    }
+
     margin-bottom: 6px;
     padding: 10px;
+    clear: both;
     border-bottom: 1px dashed #ddd;
     //background-color: lighten(#90CA77, 30%);
     //@include border-radius(5px);
@@ -61,10 +71,15 @@ form.simple_form {
       color: $default_color;
     }
     
-    a {
+    .title a, .info a {
       @include hover-link;
       @include link-colors(black, $hover_color);
     }
+
+    .tag_list {
+      text-align: right;
+    }
+
     .info {
       color: #AAA;
       a {

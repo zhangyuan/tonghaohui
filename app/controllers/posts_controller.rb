@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     @post.published_as = :published
     if @post.save
-      redirect_to posts_url
+      redirect_to post_url(@post.id)
     else
       render :new
     end
