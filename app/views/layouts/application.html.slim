@@ -31,9 +31,6 @@ html
                     div class="#{name} entry" =text
               = yield
             #main-right
-              - if sidebar_submit_new_post_button?
-                .actions
-                  = link_to '提交新内容', new_post_path, class: 'btn'
               - if current_user
                 ul.sidebar_actions
                   li
@@ -44,10 +41,11 @@ html
               - else
                 - if sidebar_sign_in_form?
                   = render 'layouts/sidebars/sign_in'
-              = render 'layouts/sidebars/banner'
+              - if sidebar_submit_new_post_button?
+                .actions
+                  = link_to '提交新内容', new_post_path, class: 'btn'
               = render 'layouts/sidebars/tags'
               = yield :sidebars
-                  
             .clear
           .clear
         #footer-wrapper
